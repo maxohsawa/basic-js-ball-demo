@@ -1,0 +1,167 @@
+<div id="box" style="
+    background: lightgray;
+    border: 5px solid black;
+    width: 1000px;
+    height: 1000px;
+"></div>
+
+<div id="ball1" style="
+    z-index:5;
+    position:absolute;
+    left:450px;
+    top:450px;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:green;
+    border: 2px solid black;
+"></div>
+
+<div id="ball2" style="
+    z-index:5;
+    position:absolute;
+    left:450px;
+    top:450px;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:blue;
+    border: 2px solid black;
+"></div>
+
+<div id="ball3" style="
+    z-index:5;
+    position:absolute;
+    left:450px;
+    top:450px;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:red;
+    border: 2px solid black;
+"></div>
+
+<script>
+
+  var ball1 = document.getElementById('ball1');
+  var xPosition1 = 333;
+  var xVelocity1 = 2;
+  var yPosition1 = 666;
+  var yVelocity1 = 3;
+
+  var ball2 = document.getElementById('ball2');
+  var xPosition2 = 666;
+  var xVelocity2 = 2;
+  var yPosition2 = 666;
+  var yVelocity2 = 2;
+
+  var ball3 = document.getElementById('ball3');
+  var xPosition3 = 450;
+  var xVelocity3 = 3;
+  var yPosition3 = 333;
+  var yVelocity3 = 2;
+
+  var min = 5;
+  var max = 80;
+  var minX = min;
+  var maxX = 1000 - max;
+  var minY = min;
+  var maxY = 1000 - max;
+
+
+  // YOUR CODE
+  // ----------------
+
+  function tick(){
+    // ball collision detection
+    if((Math.abs(xPosition1 - xPosition2) <= 90) && (Math.abs(yPosition1 - yPosition2) <= 90)){
+
+      var swap = 0;
+
+      swap = xVelocity1;
+      xVelocity1 = xVelocity2;
+      xVelocity2 = swap;
+
+      swap = yVelocity1;
+      yVelocity1 = yVelocity2;
+      yVelocity2 = swap;
+    }
+
+    if((Math.abs(xPosition2 - xPosition3) <= 90) && (Math.abs(yPosition2 - yPosition3) <= 90)){
+
+      var swap = 0;
+
+      swap = xVelocity2;
+      xVelocity2 = xVelocity3;
+      xVelocity3 = swap;
+
+      swap = yVelocity2;
+      yVelocity2 = yVelocity3;
+      yVelocity3 = swap;
+    }
+
+    if((Math.abs(xPosition1 - xPosition3) <= 90) && (Math.abs(yPosition1 - yPosition3) <= 90)){
+
+      var swap = 0;
+
+      swap = xVelocity1;
+      xVelocity1 = xVelocity3;
+      xVelocity3 = swap;
+
+      swap = yVelocity1;
+      yVelocity1 = yVelocity3;
+      yVelocity3 = swap;
+    }
+
+
+    // ball 1
+      // x
+      if(xPosition1 <= minX || xPosition1 >= maxX){
+        xVelocity1 *= -1;
+      }
+      xPosition1 += xVelocity1;
+      ball1.style.left = xPosition1 + 'px';
+
+      // y
+      if(yPosition1 <= minY || yPosition1 >= maxY){
+        yVelocity1 *= -1;
+      }
+      yPosition1 += yVelocity1;
+      ball1.style.top = yPosition1 + 'px';
+
+    // ball 2
+      // x
+      if(xPosition2 <= minX || xPosition2 >= maxX){
+        xVelocity2 *= -1;
+      }
+      xPosition2 += xVelocity2;
+      ball2.style.left = xPosition2 + 'px';
+
+      // y
+      if(yPosition2 <= minY || yPosition2 >= maxY){
+        yVelocity2 *= -1;
+      }
+      yPosition2 += yVelocity2;
+      ball2.style.top = yPosition2 + 'px';
+
+    // ball 3
+      // x
+      if(xPosition3 <= minX || xPosition3 >= maxX){
+        xVelocity3 *= -1;
+      }
+      xPosition3 += xVelocity3;
+      ball3.style.left = xPosition3 + 'px';
+
+      // y
+      if(yPosition3 <= minY || yPosition3 >= maxY){
+        yVelocity3 *= -1;
+      }
+      yPosition3 += yVelocity3;
+      ball3.style.top = yPosition3 + 'px';
+
+  }
+
+  var tickInterval = setInterval(tick,1);
+
+
+</script>
